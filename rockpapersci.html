@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container{
+            width: 100vw;
+            height: 100vh;
+            background-color: blueviolet;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            padding: 15px;
+            margin-right: 10px;
+        }
+        h1{
+            margin-bottom: 10vh;
+            color: white;
+        }
+        .block{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button_wrap{
+            display: flex;
+        }
+        .btn{
+            display: block;
+            margin-top: 10vh;
+            margin-bottom: 5vh;
+            background-color: green;
+        }
+
+        .btn:hover{
+            cursor: pointer;
+        }
+
+        .button_wrap button{
+            border: 1px solid orange;
+            background-color: transparent;
+        }
+        .button_wrap button:hover{
+            background-color: white;
+            cursor: pointer;
+        }
+
+        p{
+            color: white;
+            font-size: large;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="block">
+         <h1>rock paper scissors</h1>
+        <div class="button_wrap">
+        <button id="btn" class="rock">rock</button>
+        <button id="btn" class="paper">paper</button>
+        <button id="btn" class="scissors">scissors</button>
+        </div>
+        <button class="btn">start</button>
+        <p class="info"></p>
+        <p class="result"></p>
+        </div>
+    </div>
+</body>
+<script>
+    let play = (userChoice)=>{
+    let getComputerChoice = Math.floor(Math.random()*3);
+    let compChoice;
+    switch(getComputerChoice){
+        case 0:
+            compChoice = "rock";
+            break;
+        case 1:
+            compChoice ="paper";
+            break;
+         
+        case 2: 
+            compChoice = "scissors";
+            break;               
+    }
+
+    const info = document.querySelector(".info");
+    const result = document.querySelector(".result");
+    info.innerText = `user : ${userChoice} -------- comp : ${compChoice}`;
+    if(userChoice.toUpperCase() === compChoice.toUpperCase()){
+        result.innerText = `its a draw`;
+    }else if((userChoice.toUpperCase() === "ROCK" && compChoice.toUpperCase() === "PAPER")||(userChoice.toUpperCase() === "PAPER" && compChoice.toUpperCase() === "SCISSORS")||(userChoice.toUpperCase() === "SCISSORS" && compChoice.toUpperCase() === "ROCK")){
+        result.innerText = `U lost`;
+    }else if((userChoice.toUpperCase() === "PAPER" && compChoice.toUpperCase() === "ROCK")||(userChoice.toUpperCase() === "ROCK" && compChoice.toUpperCase() === "SCISSORS")||(userChoice.toUpperCase() === "SCISSORS" && compChoice.toUpperCase() === "PAPER")){
+        result.innerText = `U won`;
+    }else {
+        console.log("NOT VALID")
+    }
+    }
+    
+    let choice = ()=>{
+        const info = document.querySelector(".info");
+       info.innerText = "Choose your option";
+        const btns = document.querySelectorAll('#btn');
+        btns.forEach((btn)=>{
+        btn.addEventListener('click',(e)=> {play(e.target.className)});
+    })
+    }
+
+    const btn = document.querySelector('.btn');
+    btn.addEventListener('click',choice);
+
+    
+
+    
+    
+    
+    
+    // for(let i=0;i<5;i++){
+    //     play();
+    // }
+
+    // const cont = document.querySelector(".container");
+    // const p = document.createElement('p');
+    // const h3 = document.createElement('h3');
+    // const div = document.createElement('div');
+
+    // div.style.cssText = 'border:1px solid black;background-color:grey';
+    // const h1 = document.createElement('h1');
+    // const p2 = document.createElement('p');
+    // h1.innerText = "im in a div"
+    // p2.innerText = "Me too";
+    // div.appendChild(h1);
+    // div.appendChild(p2);
+    // cont.appendChild(p);
+    // cont.appendChild(h3);
+    // cont.appendChild(div);
+
+
+
+
+    
+</script>
+</html>
